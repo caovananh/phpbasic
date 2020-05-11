@@ -269,9 +269,10 @@
                     </div>                          
                     <div class="col-sm-10">
                         <div class="input-group input-group-sm mb-3">
-                            <select name="status">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                            <select name="status">        
+                                      <option  value="<?= $this->item->status ?> selected "><?= ($this->item->status==0) ? 'Inactive' : 'Active' ?><option>
+                                <!-- <option value="1"></option>
+                               <option value="0">Inactive</option> -->
                             </select>
                         </div> 
                     </div>
@@ -284,8 +285,9 @@
                         <div class="input-group input-group-sm mb-3">
                             <select name="category_id">
                                 <?php if($this->list_category_product) { ?>
+                                  
                                     <?php foreach($this->list_category_product as $row) { ?>
-                                        <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                                      <option <?=$row->id == $this->item->category_id ? 'selected' : '' ?>   value="<?= $row->id ?>"><?= $row->name ?><option>
                                     <?php } ?>
                                 <?php } ?>
                             </select>
@@ -298,6 +300,7 @@
                     </div>
                     <div class="col-sm-10">
                         <div class="input-group input-group-sm mb-3">
+                         
                             <input type="text" name="name" value="<?=$this->item->name;?>" class="form-control">
                         </div> 
                     </div>

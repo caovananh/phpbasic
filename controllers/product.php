@@ -20,9 +20,20 @@
                 $name ="%".$name."%";
                 $param['where'][]= ['name','LIKE' ,$name];
             }
+            //-------pagination------------
+            $total_rows = count( $this->db_product->getAll($param));
+            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $itemPerPage =8;
+            $offset = ($current_page-1)*$itemPerPage;
+            $param['limit'] =[$offset,$itemPerPage];
             // echo"<pre>";
-            // print_r($_POST);
-            // echo"</pre>";
+            // print_r($this);
+            // echo"</pre>";die();
+
+            $this->view->current_page =$current_page;
+            $this->view->itemPerPage =$itemPerPage;
+            $this->view->total_rows = $total_rows;
+            $this->view->id = $id;
             $this->view->data = $this->db_product->getAll($param);
             $this->view->load('product/index');
         }

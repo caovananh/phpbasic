@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -310,6 +309,21 @@
                     <?php } ?>
                   </tbody>
                 </table>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                     <?php if($this->total_rows && $this->itemPerPage ) {?>
+                      <?php $total_page = ceil($this->total_rows/$this->itemPerPage )?>
+                      
+                      <?php for($i=1;$i<= $total_page;$i++) { ?>
+                        <?php $page_active = $this->current_page == $i? 'active' : ''?>
+                      <?php  $url_page = BASE_PATH . 'index.php?module=admin&controller=product&action=index&page=' . $i?>
+                      <li class="page-item <?=$page_active?>"><a class="page-link" href="<?=$url_page?>"><?=$i?></a></li>
+                     
+                     <?php } }?>
+                    </ul>
+                </nav>
+
               </div>
             </div>
           </div>
